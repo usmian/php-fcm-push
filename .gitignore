@@ -80,6 +80,7 @@ modules.xml
 
 # Default Filename of Service Account in Package
 service_account.json
+service_account_false.json
 
 # PHPUnit HTML Report
 report/
