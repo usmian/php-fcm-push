@@ -11,35 +11,36 @@ namespace phpFCMv1;
 
 class Notification extends Base {
 
-    public function setNotification($title, $message, $data = null) {
-        $this -> validateCurrent($title, $message);
+    public function setNotification(string $title, string $message, ?array $data = null, string $image = '') {
+        $this->validateCurrent($title, $message);
 
-        $payload = array(
-            'notification' => array(
+        $payload = [
+            'notification' => [
                 'title' => $title,
-                'body' => $message
-            ),
-            'android' => array(
-                'notification' => array(
+                'body' => $message,
+                'image' => $image,
+            ],
+            'android' => [
+                'notification' => [
                     'sound' => 'default',
                     'notification_count' => 1,
-                )
-            ),
-            'apns' => array(
-                'payload' => array(
-                    'aps' => array(
+                ]
+            ],
+            'apns' => [
+                'payload' =>[
+                    'aps' => [
                         'sound' => 'default',
                         'badge' => 1
-                    )
-                )
-            )
-        );
+                    ]
+                ]
+            ]
+        ];
 
         if (is_array($data) && count($data)>0){
             $payload['data'] = $data; 
        }
            
-        $this -> setPayload($payload);     
+        $this->setPayload($payload);
     }
 
     /**
